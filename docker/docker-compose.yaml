@@ -197,7 +197,7 @@ services:
       MODE: api
     volumes:
       # Mount the storage directory to the container, for storing user files.
-      - ./volumes/app/storage:/app/api/storage
+      - ../files/dify/app/storage:/app/api/storage
     networks:
       - ssrf_proxy_network
       - default
@@ -215,7 +215,7 @@ services:
       MODE: worker
     volumes:
       # Mount the storage directory to the container, for storing user files.
-      - ./volumes/app/storage:/app/api/storage
+      - ../files/dify/app/storage:/app/api/storage
     networks:
       - ssrf_proxy_network
       - default
@@ -248,7 +248,7 @@ services:
       HTTPS_PROXY: ${SANDBOX_HTTPS_PROXY:-http://ssrf_proxy:3128}
       SANDBOX_PORT: ${SANDBOX_PORT:-8194}
     volumes:
-      - ./volumes/sandbox/dependencies:/dependencies
+      - ../files/dify/sandbox/dependencies:/dependencies
     networks:
       - ssrf_proxy_network
       - dokploy-network
@@ -323,7 +323,7 @@ services:
       - dokploy-network
     volumes:
       # Mount the Weaviate data directory to the con tainer.
-      - ./volumes/weaviate:/var/lib/weaviate
+      - ../files/dify/weaviate:/var/lib/weaviate
     environment:
       # The Weaviate configurations
       # You can refer to the [Weaviate](https://weaviate.io/developers/weaviate/config-refs/env-vars) documentation for more information.
@@ -346,7 +346,7 @@ services:
       - unstructured
     restart: always
     volumes:
-      - ./volumes/unstructured:/app/data
+      - ../files/dify/unstructured:/app/data
 
 networks:
   # create a network between sandbox, api and ssrf_proxy, and can not access outside.
