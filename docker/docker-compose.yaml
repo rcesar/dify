@@ -312,7 +312,6 @@ services:
         - traefik.http.routers.${HASH:-ai-dify-26a850}.rule=Host(${DIFY_HOST:-dify.diginn.com.br}) ## Url do Dify
         - traefik.http.services.${HASH:-ai-dify-26a850}.loadbalancer.server.port=80
         - traefik.http.services.${HASH:-ai-dify-26a850}.loadbalancer.passHostHeader=true
-        - traefik.http.routers.${HASH:-ai-dify-26a850}.service=nginx
   # The Weaviate vector store.
   weaviate:
     image: semitechnologies/weaviate:1.19.0
