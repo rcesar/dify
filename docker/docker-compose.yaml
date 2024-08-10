@@ -323,7 +323,7 @@ services:
       - dokploy-network
     volumes:
       # Mount the Weaviate data directory to the con tainer.
-      - ../files/dify/weaviate:/var/lib/weaviate
+      - ../files/dify/weaviate:${WEAVIATE_PERSISTENCE_DATA_PATH:-/var/lib/weaviate}
     environment:
       # The Weaviate configurations
       # You can refer to the [Weaviate](https://weaviate.io/developers/weaviate/config-refs/env-vars) documentation for more information.
