@@ -356,6 +356,5 @@ networks:
     internal: true
   dokploy-network:
     external: true
-
 volumes:
-  oradata:
+  dify:
