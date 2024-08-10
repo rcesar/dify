@@ -198,7 +198,7 @@ services:
     volumes:
       # Mount the storage directory to the container, for storing user files.
       - ../files/dify-app/storage:/app/api/storage
-      - ../files/dify-app-storage/upload_files:/app/api/storage/upload_files - 
+      - ../files/dify-app/storage/upload_files:/app/api/storage/upload_files 
     networks:
       - ssrf_proxy_network
       - default
@@ -216,7 +216,7 @@ services:
       MODE: worker
     volumes:
       # Mount the storage directory to the container, for storing user files.
-      - ../files/dify-app-storage/upload_files:/app/api/storage/upload_files  
+      - ../files/dify-app/storage/upload_files:/app/api/storage/upload_files
     networks:
       - ssrf_proxy_network
       - default
@@ -362,4 +362,3 @@ volumes:
   dify-weaviate:
   dify-sandbox:
   dify-app:
-  dify-app-storage:
