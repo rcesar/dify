@@ -261,8 +261,8 @@ services:
     image: ubuntu/squid:latest
     restart: always
     volumes:
-      - ../../files/ssrf_proxy/squid.conf.template:/etc/squid/squid.conf.template
-      - ../../files/ssrf_proxy/docker-entrypoint.sh:/docker-entrypoint-mount.sh
+      - ./ssrf_proxy/squid.conf.template:/etc/squid/squid.conf.template
+      - ./ssrf_proxy/docker-entrypoint.sh:/docker-entrypoint-mount.sh
     entrypoint: [ "sh", "-c", "cp /docker-entrypoint-mount.sh /docker-entrypoint.sh && sed -i 's/\r$$//' /docker-entrypoint.sh && chmod +x /docker-entrypoint.sh && /docker-entrypoint.sh" ]
     environment:
       # pls clearly modify the squid env vars to fit your network environment.
