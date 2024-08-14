@@ -197,8 +197,8 @@ services:
       MODE: api
     volumes:
       # Mount the storage directory to the container, for storing user files.
-      - ../files/dify-app/storage:/app/api/storage
-      - ../files/dify-app/storage/upload_files:/app/api/storage/upload_files 
+      - ../../files/dify-app/storage:/app/api/storage
+      - ../../files/dify-app/storage/upload_files:/app/api/storage/upload_files 
     networks:
       - ssrf_proxy_network
       - default
@@ -216,7 +216,7 @@ services:
       MODE: worker
     volumes:
       # Mount the storage directory to the container, for storing user files.
-      - ../files/dify-app/storage/upload_files:/app/api/storage/upload_files
+      - ../../files/dify-app/storage/upload_files:/app/api/storage/upload_files
     networks:
       - ssrf_proxy_network
       - default
@@ -249,7 +249,7 @@ services:
       HTTPS_PROXY: ${SANDBOX_HTTPS_PROXY:-http://ssrf_proxy:3128}
       SANDBOX_PORT: ${SANDBOX_PORT:-8194}
     volumes:
-      - ../files/dify-sandbox/dependencies:/dependencies
+      - ../../files/dify-sandbox/dependencies:/dependencies
     networks:
       - ssrf_proxy_network
       - dokploy-network
@@ -261,8 +261,8 @@ services:
     image: ubuntu/squid:latest
     restart: always
     volumes:
-      - ./ssrf_proxy/squid.conf.template:/etc/squid/squid.conf.template
-      - ./ssrf_proxy/docker-entrypoint.sh:/docker-entrypoint-mount.sh
+      - ../../files/ssrf_proxy/squid.conf.template:/etc/squid/squid.conf.template
+      - ../../files/ssrf_proxy/docker-entrypoint.sh:/docker-entrypoint-mount.sh
     entrypoint: [ "sh", "-c", "cp /docker-entrypoint-mount.sh /docker-entrypoint.sh && sed -i 's/\r$$//' /docker-entrypoint.sh && chmod +x /docker-entrypoint.sh && /docker-entrypoint.sh" ]
     environment:
       # pls clearly modify the squid env vars to fit your network environment.
@@ -324,7 +324,7 @@ services:
       - dokploy-network
     volumes:
       # Mount the Weaviate data directory to the con tainer.
-      - ../files/dify-weaviate:${WEAVIATE_PERSISTENCE_DATA_PATH:-/var/lib/weaviate}
+      - ../../files/dify-weaviate:${WEAVIATE_PERSISTENCE_DATA_PATH:-/var/lib/weaviate}
     environment:
       # The Weaviate configurations
       # You can refer to the [Weaviate](https://weaviate.io/developers/weaviate/config-refs/env-vars) documentation for more information.
@@ -347,7 +347,7 @@ services:
       - unstructured
     restart: always
     volumes:
-      - ../files/dify-unstructured:/app/data
+      - ../../files/dify-unstructured:/app/data
 
 networks:
   # create a network between sandbox, api and ssrf_proxy, and can not access outside.
@@ -362,3 +362,4 @@ volumes:
   dify-weaviate:
   dify-sandbox:
   dify-app:
+  ssrf_proxy:
